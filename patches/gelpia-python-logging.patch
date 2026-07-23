@@ -1,0 +1,18 @@
+diff --git a/bin/gelpia_logging.py b/bin/gelpia_logging.py
+index 497e9da..901a5f3 100644
+--- a/bin/gelpia_logging.py
++++ b/bin/gelpia_logging.py
+@@ -18,8 +18,11 @@ LEVELS = {
+     "high":   HIGH,
+ }
+ 
+-LOG_LEVEL = None
+-LOG_FILE = None
++# FPTaylor launches Gelpia workers directly.  Under multiprocessing spawn the
++# module is imported in a fresh process before the CLI initialises logging.
++# Use the normal silent defaults so logging itself can never abort analysis.
++LOG_LEVEL = NONE
++LOG_FILE = sys.stdout
+ 
+ 
+ def set_log_level(level):

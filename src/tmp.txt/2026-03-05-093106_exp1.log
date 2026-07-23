@@ -1,0 +1,132 @@
+Base path: /home/ubuntu/MiniTuner/FPTaylor
+Config file: /home/ubuntu/MiniTuner/FPTaylor/default.cfg
+default-rnd = rnd64
+nlopt-cc = gcc -std=c99 -O3
+opt-exact = true
+develop = false
+log-append-date = start
+uncertainty = false
+rel-error = false
+opt-approx = false
+proof-record = false
+find-bounds = false
+proof-dir = proofs
+opt-f-abs-tol = 0.01
+fail-on-exception = true
+print-opt-lower-bounds = true
+bb-compile = {base}/b_and_b/compile.sh {base} {input} {out}
+z3-python-lib = 
+opt-x-abs-tol = 0.01
+export-error-bounds = 
+opt-f-rel-tol = 0.01
+export-options = 
+opt-x-rel-tol = 0.0
+rel-error-threshold = 0.0001
+bb-alg = opt0
+log-base-dir = tmp.txt
+intermediate-opt = false
+z3-interval-bounds = true
+opt-max-iters = 1000000
+abs-error = true
+z3-bin = 
+maxima-simplification = false
+print-hex-floats = true
+debug = true
+print-precision = 7
+export-error-bounds-data = 
+fp-power2-model = true
+opt = gelpia
+default-var-type = float64
+verbosity = 2
+ulp-error = false
+opt-timeout = 10000
+nlopt-lib = -lnlopt -lm
+tmp-base-dir = tmp
+all-indices = true
+unique-indices = false
+z3-seed = 0
+tmp-date = false
+z3-python-cmd = python
+const-approx-real-vars = false
+print-second-order-errors = false
+Resetting input_parser_env
+eval_const_expr: (1/128)
+result: 1/128
+eval_const_expr: (1/2)
+result: 1/2
+eval_const_expr: 0
+result: 0
+eval_const_expr: (1/2)
+result: 1/2
+eval_const_expr: (1/128)
+result: 1/128
+Resetting input_parser_env
+|tasks| = 1
+Processing: Expression 1
+
+*************************************
+Taylor form for: rnd64(rnd64((rnd64((rnd64(exp(rnd64(x))) - rnd64(1))) * rnd64(inv(rnd64(x))))))
+
+Conservative bound: [0.015686, 83.036323]
+
+Simplified rounding: rnd64((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x)))))
+Building Taylor forms...
+var_rnd_form
+exp_form
+rounded_form
+const_form
+sub_form
+rounded_form
+inv_form
+rounded_form
+mul_form
+rounded_form
+Taylor forms cache stats: num_bindings = 10, num_buckets = 1024, max_bucket_length = 1
+Expr cache stats: num_bindings = 35, num_buckets = 65536, max_bucket_length = 1
+Simplifying Taylor forms...
+success
+v0 = ((exp(x) - 1) * (1 / x))
+-11: exp = -53: (1/4989600773836799529140931782592096415168628151088643853756368106093029729672410164462394913731589252723356117110481238109931094970983984151847929495712078550800014182377714191293844303610907467956633391861359809983327026137802175972222138171120110393767802267189390104105896238075860024819712)
+-10: exp = -106: (4440405010669291/549755813888)
+-8: exp = -53: ((exp(x) - 1) * (1/4989600773836799529140931782592096415168628151088643853756368106093029729672410164462394913731589252723356117110481238109931094970983984151847929495712078550800014182377714191293844303610907467956633391861359809983327026137802175972222138171120110393767802267189390104105896238075860024819712))
+-7: exp = -106: ((exp(x) - 1) * (4503599627370545/34359738368))
+-5: exp = -53: ((1 / x) * 0)
+-3: exp = -53: ((1 / x) * (1/4989600773836799529140931782592096415168628151088643853756368106093029729672410164462394913731589252723356117110481238109931094970983984151847929495712078550800014182377714191293844303610907467956633391861359809983327026137802175972222138171120110393767802267189390104105896238075860024819712))
+-2: exp = -106: ((1 / x) * (7425180500362909/144115188075855872))
+1: exp = -53: (((exp(x) - 1) * (-((floor_power2(x) / (x * x))))) + ((1 / x) * (exp(x) * floor_power2(x))))
+4: exp = -53: ((1 / x) * floor_power2((exp(x) + interval(-4.57612078980132013286e-17, 4.57612078980132013286e-17))))
+6: exp = -53: ((1 / x) * floor_power2(((exp(x) - 1) + interval(-1.56783510360528873860e-16, 1.56783510360528873860e-16))))
+9: exp = -53: ((exp(x) - 1) * floor_power2(((1 / x) + interval(-4.54747350886465835519e-13, 4.54747350886465835519e-13))))
+12: exp = -53: floor_power2((((exp(x) - 1) * (1 / x)) + interval(-3.25538570951428589856e-13, 3.25538570951428589856e-13)))
+
+Corresponding original subexpressions:
+-11: rnd[0,ne,0.00,0,0](rnd64((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x))))))
+-10: rnd[0,up,0.00,0,0]((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x)))))
+-8: rnd[0,ne,0.00,0,0](rnd64(inv(rnd64(x))))
+-7: rnd[0,up,0.00,0,0](inv(rnd64(x)))
+-5: rnd[0,ne,0.00,0,0](rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)))
+-3: rnd[0,ne,0.00,0,0](rnd64(exp(rnd64(x))))
+-2: rnd[0,up,0.00,0,0](exp(rnd64(x)))
+1: rnd64(x)
+4: rnd64(exp(rnd64(x)))
+6: rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1))
+9: rnd64(inv(rnd64(x)))
+12: rnd64((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x)))))
+
+bounds: [-inf, inf]
+
+Computing absolute errors
+**ERROR**: /home/ubuntu/MiniTuner/FPTaylor/gelpia/bin/gelpia not found.
+Set the GELPIA_PATH variable or copy GELPIA to the FPTaylor root directory.
+Elapsed time: 0.01509
+*************************************
+
+-------------------------------------------------------------------------------
+Problem: Expression 1
+
+
+Bounds (without rounding): [-inf, +inf]
+
+
+Elapsed time: 0.02
+

@@ -1,0 +1,22 @@
+Variables
+  real N in [0.0078125, 10];
+
+Definitions
+  var_N_00 = rnd64(N);
+  num_00 = rnd64(1);
+  add_00 = rnd64(var_N_00 + num_00);
+  var_N_01 = rnd64(N);
+  num_01 = rnd64(1);
+  add_01 = rnd64(var_N_01 + num_01);
+  log_00 = rnd[64,ne,0.5190838926914937,-52,-1021](log(add_01));
+  mul_00 = rnd64(add_00 * log_00);
+  var_N_02 = rnd64(N);
+  var_N_03 = rnd64(N);
+  log_01 = rnd[64,ne,0.5190838926914937,-52,-1021](log(var_N_03));
+  mul_01 = rnd64(var_N_02 * log_01);
+  sub_00 = rnd64(mul_00 - mul_01);
+  num_02 = rnd64(1);
+  sub_01 = rnd64(sub_00 - num_02);
+
+Expressions
+  sub_01;

@@ -1,0 +1,48 @@
+diff --git a/src/ASTtypes.py b/src/ASTtypes.py
+index ea6852c..4b82eb5 100644
+--- a/src/ASTtypes.py
++++ b/src/ASTtypes.py
+@@ -12,15 +12,16 @@ class AST(object):
+ class AST(object):
+ 
+ 	__slots__ = ['depth', 'f_expression', 'children',\
+-	'parents', 'noise', 'rnd']
++	'parents', 'noise', 'rnd', 'custom_noise']
+ 
+ 	def __init__(self):
+ 		self.depth = 0
+ 		self.f_expression = None
+ 		self.children = ()
+ 		self.parents = () #set()
+ 		self.noise = (0,0)
+ 		self.rnd = 1.0
++		self.custom_noise = None
+ 
+ 	#@staticmethod
+ 	def set_expression(self, fexpr):
+@@ -59,7 +60,13 @@ class AST(object):
+ 
+ 	@staticmethod
+ 	def get_noise(obj):
+-		return (seng.expand(obj.f_expression)) if obj.f_expression is not None else 0
++		if obj.custom_noise is not None:
++			return seng.expand(obj.custom_noise)
++		return seng.expand(obj.f_expression) if obj.f_expression is not None else 0
++
++	def set_custom_noise(self, relative, absolute):
++		self.custom_noise = relative * seng.Abs(self.f_expression) + absolute
++		self.rnd = 1.0
+ 
+ 	def set_rounding(self, rnd_type):
+ 		self.rnd = ops._FP_RND[rnd_type]
+diff --git a/src/ops_def.py b/src/ops_def.py
+index 0fd68f0..5682cc1 100644
+--- a/src/ops_def.py
++++ b/src/ops_def.py
+@@ -30,7 +30,7 @@ _DFOPS = { PLUS  : [lambda L : 1, lambda L : 1],\
+ 		   LOG   : [lambda L : 1/L[0]], \
+ 		   IDEN    : [lambda L : 1, lambda L : 1], \
+-		   EXP 	 : [lambda L : L[0]], \
++		   EXP 	 : [lambda L : exp(L[0])], \
+ 		   TAN   : [lambda L : cot(L[0])], \
+ 		   COT	 : [lambda L : tan(L[0])], \

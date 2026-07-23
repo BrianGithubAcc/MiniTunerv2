@@ -1,0 +1,4 @@
+(executable
+ (name minitune)
+ (modules minitune config parse_input fptaylor gelpia expr_data satire_model z3_solver plot_data)
+ (libraries math_parse unix str taylor_parse z3 yojson))

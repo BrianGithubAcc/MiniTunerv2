@@ -1,0 +1,34 @@
+{
+  "NMSE example 3.3": {
+    "provenance": "experimental",
+    "domains": {"x": ["-1", "1"], "eps": ["0.00000095367431640625", "0.0009765625"]}
+  },
+  "NMSE example 3.5": {
+    "provenance": "experimental",
+    "domains": {"N": ["1", "1000000"]}
+  },
+  "NMSE problem 3.3.2": {
+    "provenance": "experimental",
+    "domains": {"x": ["-0.75", "0.75"], "eps": ["0.00000095367431640625", "0.0009765625"]}
+  },
+  "NMSE problem 3.3.5": {
+    "provenance": "experimental",
+    "domains": {"x": ["-1", "1"], "eps": ["0.00000095367431640625", "0.0009765625"]}
+  },
+  "NMSE problem 3.3.7": {
+    "provenance": "experimental",
+    "domains": {"x": ["0", "10"]}
+  },
+  "NMSE example 3.7": {
+    "provenance": "experimental",
+    "domains": {"x": ["0", "0.6"]}
+  },
+  "NMSE section 3.5": {
+    "provenance": "experimental",
+    "domains": {"a": ["0.1", "10"], "x": ["0", "0.6"]}
+  },
+  "Complex sine and cosine": {
+    "provenance": "experimental",
+    "domains": {"re": ["-3.141592653589793", "3.141592653589793"], "im": ["-5", "5"]}
+  }
+}

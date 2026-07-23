@@ -1,0 +1,467 @@
+; MiniTuner OpTuner compatibility suite
+; -*- mode: scheme -*-
+
+(FPCore  (x y)
+ :name "Data.HyperLogLog.Type:size from hyperloglog-0.3.4, A"
+  :pre (and (<= 6 x 10)
+            (<= 1 y 5))
+  (* (* x 1.0) (log (- 1.0 (/ y x)))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y)
+ :name "Data.Number.Erf:$dmerfcx from erf-2.0.0.0"
+ :pre (and (<= 2 x 10)
+           (<= -5 y 5))
+ (* x (exp (* y y))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y)
+ :name "Data.Random.Distribution.Normal:normalF from random-fu-0.2.6.2"
+ :pre (and (<= -5 x 1)
+           (<= -5 y 5))
+ (exp (* (* x y) y)))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z)
+ :name "Diagrams.ThreeD.Transform:aboutX from diagrams-lib-1.3.0.3, A"
+ :pre (and (<= -10 x 10)
+           (<= 0 y 1.5)
+           (<= -10 z 10))
+ (- (* x (cos y)) (* z (sin y))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z)
+ :name "Diagrams.ThreeD.Transform:aboutX from diagrams-lib-1.3.0.3, B"
+ :pre (and (<= -10 x 10)
+           (<= 0 y 1.5)
+           (<= -10 z 10))
+ (+ (* x (sin y)) (* z (cos y))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z)
+ :name "Diagrams.ThreeD.Transform:aboutY from diagrams-lib-1.3.0.3"
+ :pre (and (<= 0 x 10)
+           (<= 0 y 1.5)
+           (<= 0 z 10))
+ (+ (* x (cos y)) (* z (sin y))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y)
+ :name "Diagrams.TwoD.Path.Metafont.Internal:hobbyF from diagrams-contrib-1.3.0.5"
+ :pre (and (<= 0 x 1.5)
+           (<= 0 y 1.5))
+ (/
+  (+
+   2.0
+   (*
+    (*
+     (* (sqrt 2.0) (- (sin x) (/ (sin y) 16.0)))
+     (- (sin y) (/ (sin x) 16.0)))
+    (- (cos x) (cos y))))
+  (*
+   3.0
+   (+
+    (+ 1.0 (* (/ (- (sqrt 5.0) 1.0) 2.0) (cos x)))
+    (* (/ (- 3.0 (sqrt 5.0)) 2.0) (cos y))))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y)
+ :name "Linear.Quaternion:$cexp from linear-1.19.1.3"
+ :pre (and (<= -10 x 10)
+           (<= 0.125 y 1.5))
+ (* x (/ (sin y) y)))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z t)
+ :name "Numeric.SpecFunctions:invIncompleteBetaWorker from math-functions-0.1.5.2, B"
+ :pre (and (<= -10 x 10)
+           (<= 0.5 y 0.9375)
+           (<= -10 z 10)
+           (<= -10 t 10))
+ (- (+ (* x (log y)) (* z (log (- 1.0 y)))) t))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z t a b)
+ :name "Numeric.SpecFunctions:logBeta from math-functions-0.1.5.2, A"
+ :pre (and (<= -10 x 10)
+           (<= -10 y 10)
+           (<= -10 z 10)
+           (<= 1 t 10)
+           (<= -10 a 10)
+           (<= -10 b 10))
+ (+ (- (+ (+ x y) z) (* z (log t))) (* (- a 0.5) b)))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z t a b c i)
+ :name "Numeric.SpecFunctions:logBeta from math-functions-0.1.5.2, B"
+ :pre (and (<= -10 x 10)
+           (<= 1 y 10)
+           (<= -10 z 10)
+           (<= -10 t 10)
+           (<= -10 a 10)
+           (<= -10 b 10)
+           (<= 1 c 10)
+           (<= -10 i 10))
+ (+ (+ (+ (+ (+ (* x (log y)) z) t) a) (* (- b 0.5) (log c))) (* y i)))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z t a)
+ :name "Numeric.SpecFunctions:logGammaL from math-functions-0.1.5.2"
+ :pre (and (<= 1 x 5)
+           (<= 1 y 5)
+           (<= 1 z 10)
+           (<= 1 t 10)
+           (<= -10 a 10))
+ (+ (- (+ (log (+ x y)) (log z)) t) (* (- a 0.5) (log t))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z)
+ :name "Numeric.SpecFunctions:$slogFactorial from math-functions-0.1.5.2, B"
+ :pre (and (<= 1 x 10)
+           (<= -10 y 10)
+           (<= -10 z 10))
+ (+
+  (+ (- (* (- x 0.5) (log x)) x) 0.91893853320467)
+  (/
+   (+
+    (* (- (* (+ y 0.0007936500793651) z) 0.0027777777777778) z)
+    0.083333333333333)
+   x)))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z)
+ :name "Numeric.SpecFunctions:stirlingError from math-functions-0.1.5.2"
+ :pre (and (<= -10 x 10)
+           (<= 1 y 10)
+           (<= -10 z 10))
+ (- (+ (- x (* (+ y 0.5) (log y))) y) z))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z t)
+ :name "Statistics.Distribution.Beta:$cdensity from math-functions-0.1.5.2"
+ :pre (and (<= -10 x 10)
+           (<= 0.5 y 0.9375)
+           (<= -10 z 10)
+           (<= -10 t 10))
+ (- (+ (* (- x 1.0) (log y)) (* (- z 1.0) (log (- 1.0 y)))) t))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x)
+ :name "Statistics.Distribution.Binomial:directEntropy from math-functions-0.1.5.2"
+ :pre (<= 1 x 10)
+ (* x (log x)))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z)
+ :name "Statistics.Distribution.Poisson.Internal:probability from math-functions-0.1.5.2"
+ :pre (and (<= 0 x 4)
+           (<= 1 y 5)
+           (<= 0 z 10))
+ (exp (+ (- x z) (* (log y) y))))
+
+
+; -*- mode: scheme -*-
+
+(FPCore  (x y z)
+ :name "Statistics.Distribution.Poisson:$clogProbability from math-functions-0.1.5.2"
+ :pre (and (<= -10 x 10)
+           (<= 1 y 10)
+           (<= -10 z 10))
+ (- (- (* x (log y)) z) y))
+
+
+;; -*- mode: scheme -*-
+
+(FPCore (lat1 lat2  lon1 lon2)
+        :name "azimuth"
+        :cite (solovyev-et-al-2015)
+        :precision binary64
+        :pre (and (<= 0 lat1 0.4) (<= 0.5 lat2 1)
+                  (<= 0 lon1 3.14159265) (<= -3.14159265 lon2 -0.5))
+        (let ([dLon (- lon2 lon1)])
+          (let ([s_lat1 (sin lat1)] [c_lat1 (cos lat1)]
+                [s_lat2 (sin lat2)] [c_lat2 (cos lat2)]
+                [s_dLon (sin dLon)] [c_dLon (cos dLon)])
+            (atan
+             (/ (* c_lat2 s_dLon)
+                (- (* c_lat1 s_lat2) (* (* s_lat1 c_lat2) c_dLon)))))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (re im)
+        :name "complex_sine_and_cosine"
+        :cite (herbie-2015)
+        :pre (and (<= 0 re 10)
+                  (<= 0 im 10))
+        (* (* 0.5 (sin re)) (- (exp (- im)) (exp im))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "exp1x"
+        :description "Generated by FPTaylor"
+        :precision binary64
+        :pre (<= 0.0078125 x 0.5)
+        (/ (- (exp x) 1) x))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "exp1x_log"
+        :description "Generated by FPTaylor"
+        :precision binary64
+        :pre (<= 0.0078125 x 0.5)
+        (/ (- (exp x) 1) (log (exp x))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x1 x2 x3)
+        :name "hartman3"
+        :precision binary64
+        :pre (and (<= 0 x1 1) (<= 0 x2 1) (<= 0 x3 1))
+        (let ([e1 (+ (+ (* 3.0 (* (- x1 0.3689) (- x1 0.3689)))
+                        (* 10.0 (* (- x2 0.117) (- x2 0.117))))
+                     (* 30.0 (* (- x3 0.2673) (- x3 0.2673))))]
+              [e2 (+ (+ (* 0.1 (* (- x1 0.4699) (- x1 0.4699)))
+                        (* 10.0 (* (- x2 0.4387) (- x2 0.4387))))
+                     (* 35.0 (* (- x3 0.747) (- x3 0.747))))]
+              [e3 (+ (+ (* 3.0 (* (- x1 0.1091) (- x1 0.1091)))
+                        (* 10.0 (* (- x2 0.8732) (- x2 0.8732))))
+                     (* 30.0 (* (- x3 0.5547) (- x3 0.5547))))]
+              [e4 (+ (+ (* 0.1 (* (- x1 0.03815) (- x1 0.03815)))
+                        (* 10.0 (* (- x2 0.5743) (- x2 0.5743))))
+                     (* 35.0 (* (- x3 0.8828) (- x3 0.8828))))])
+          (let ([exp1 (exp (- e1))] [exp_2 (exp (- e2))] ;; IB: exp2 -> exp_2
+                [exp3 (exp (- e3))] [exp4 (exp (- e4))])
+            (- (+ (+ (+ (* 1.0 exp1) (* 1.2 exp_2)) ;; IB: exp2 -> exp_2
+                     (* 3.0 exp3)) (* 3.2 exp4))))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x1 x2 x3 x4 x5 x6)
+        :name "hartman6"
+        :precision binary64
+        :pre (and (<= 0 x1 1) (<= 0 x2 1) (<= 0 x3 1) (<= 0 x4 1) (<= 0 x5 1) (<= 0 x6 1))
+        (let ([e1
+               (+ (+ (+ (+ (+ (* 10.0 (* (- x1 0.1312) (- x1 0.1312))) (* 3.0 (* (- x2 0.1696) (- x2 0.1696))))
+                           (* 17.0 (* (- x3 0.5569) (- x3 0.5569)))) (* 3.5 (* (- x4 0.0124) (- x4 0.0124))))
+                     (* 1.7 (* (- x5 0.8283) (- x5 0.8283)))) (* 8.0 (* (- x6 0.5886) (- x6 0.5886))))]
+              [e2
+               (+ (+ (+ (+ (+ (* 0.05 (* (- x1 0.2329) (- x1 0.2329))) (* 10.0 (* (- x2 0.4135) (- x2 0.4135))))
+                           (* 17.0 (* (- x3 0.8307) (- x3 0.8307)))) (* 0.1 (* (- x4 0.3736) (- x4 0.3736))))
+                     (* 8.0 (* (- x5 0.1004) (- x5 0.1004)))) (* 14.0 (* (- x6 0.9991) (- x6 0.9991))))]
+              [e3
+               (+ (+ (+ (+ (+ (* 3.0 (* (- x1 0.2348) (- x1 0.2348))) (* 3.5 (* (- x2 0.1451) (- x2 0.1451))))
+                           (* 1.7 (* (- x3 0.3522) (- x3 0.3522)))) (* 10.0 (* (- x4 0.2883) (- x4 0.2883))))
+                     (* 17.0 (* (- x5 0.3047) (- x5 0.3047)))) (* 8.0 (* (- x6 0.665) (- x6 0.665))))]
+              [e4
+               (+ (+ (+ (+ (+ (* 17.0 (* (- x1 0.4047) (- x1 0.4047))) (* 8.0 (* (- x2 0.8828) (- x2 0.8828))))
+                           (* 0.05 (* (- x3 0.8732) (- x3 0.8732)))) (* 10.0 (* (- x4 0.5743) (- x4 0.5743))))
+                     (* 0.1 (* (- x5 0.1091) (- x5 0.1091)))) (* 14.0 (* (- x6 0.0381) (- x6 0.0381))))])
+          (let ([exp1 (exp (- e1))] [exp_2 (exp (- e2))] ;; IB: exp2 -> exp_2
+                [exp3 (exp (- e3))] [exp4 (exp (- e4))])
+            (- (+ (+ (+ (* 1.0 exp1) (* 1.2 exp_2)) ;; IB: exp2 -> exp_2
+                     (* 3.0 exp3)) (* 3.2 exp4))))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x y)
+        :name "i6"
+        :description "Generated by FPTaylor"
+        :precision binary32
+        :pre (and (<= 0.0625 x 10)
+                  (<= -5 y 5))
+        (sin (* x y)))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "logexp"
+        :description "Generated by FPTaylor"
+        :precision binary64
+        :pre (<= 0 x 8)
+        (log (+ 1 (exp x))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "logexp2"
+        :cite (solovyev-et-al-2015)
+        :precision binary64
+        :pre (<= 0 x 8)
+        (let ([e (exp x)])
+          (log (+ 1 e))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "nmse_example_3_10"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 0.5 x 0.9375)
+        (/ (log (- 1 x)) (log (+ 1 x))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x eps)
+        :name "nmse_example_3_3"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (and (<= 0 x 1.5)
+                  (<= 0 eps 0.0078125))
+        (- (sin (+ x eps)) (sin x)))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "nmse_example_3_4"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 0.0078125 x 1.5)
+        (/ (- 1 (cos x)) (sin x)))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "nmse_example_3_7"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 0 x 0.6)
+        (- (exp x) 1))
+
+;; -*- mode: scheme -*-
+
+(FPCore (N)
+        :name "nmse_example_3_8"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 0.0078125 N 10)
+        (- (- (* (+ N 1) (log (+ N 1))) (* N (log N))) 1))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x eps)
+        :name "nmse_problem_3_3_2"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (and (<= 0 x 0.75)
+                  (<= 0 eps 0.0078125))
+        (- (tan (+ x eps)) (tan x)))
+
+;; -*- mode: scheme -*-
+
+(FPCore (N)
+        :name "nmse_problem_3_3_6"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 0.0078125 N 10)
+        (- (log (+ N 1)) (log N)))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "nmse_problem_3_3_7"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 0 x 10)
+        (+ (- (exp x) 2) (exp (- x))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (a b eps)
+        :name "nmse_problem_3_4_2"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (and (<= 1 a 10)
+                  (<= 1 b 10)
+                  (<= 0.00390625 eps 0.125))
+        (/ (* eps (- (exp (* (+ a b) eps)) 1))
+           (* (- (exp (* a eps)) 1) (- (exp (* b eps)) 1))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "nmse_problem_3_4_4"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 1 x 5)
+        (sqrt (/ (- (exp (* 2 x)) 1) (- (exp x) 1))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x)
+        :name "nmse_section_3_11"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (<= 0.5 x 10)
+        (/ (exp x) (- (exp x) 1)))
+
+;; -*- mode: scheme -*-
+
+(FPCore (a x)
+        :name "nmse_section_3_5"
+        :cite (hamming-1987 herbie-2015)
+        :fpbench-domain textbook
+        :pre (and (<= 0 a 1)
+                  (<= 1 x 10))
+        (- (exp (* a x)) 1))
+
+;; -*- mode: scheme -*-
+
+(FPCore (theta phi raw_normal_x raw_normal_y raw_normal_z)
+        :name "povray_photons"
+        :pre (and (<= -3.141592653589793 theta 3.141592653589793)
+                  (<= -3.141592653589793 phi 3.141592653589793)
+		  (<= -1 raw_normal_x 1)
+		  (<= -1 raw_normal_y 1)
+		  (<= -1 raw_normal_z 1))
+        (let* ([direction_y (sin theta)]
+               [direction_x_0 (cos theta)]
+               [direction_z (* direction_x_0 (sin phi))]
+               [direction_x (* direction_x_0 (cos phi))])
+	  (+ (+ (* raw_normal_x direction_x)
+                (* raw_normal_y direction_y))
+             (* raw_normal_z direction_z))))
+
+;; -*- mode: scheme -*-
+
+(FPCore (x r lat lon)
+        :name "sphere"
+        :cite (solovyev-et-al-2015)
+        :precision binary64
+        :pre (and (<= -10 x 10) (<= 0 r 10)
+                  (<= -1.570796 lat 1.570796) (<= -3.14159265 lon 3.14159265))
+        (let ([sinLat (sin lat)] [cosLon (cos lon)])
+          (+ x (* (* r sinLat) cosLon))))

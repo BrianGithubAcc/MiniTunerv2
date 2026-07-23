@@ -1,0 +1,130 @@
+Base path: /home/ubuntu/MiniTuner/FPTaylor
+Config file: /home/ubuntu/MiniTuner/FPTaylor/default.cfg
+default-rnd = rnd64
+nlopt-cc = gcc -std=c99 -O3
+opt-exact = false
+develop = false
+log-append-date = start
+uncertainty = false
+rel-error = false
+opt-approx = false
+proof-record = false
+find-bounds = false
+proof-dir = proofs
+opt-f-abs-tol = 0.2
+fail-on-exception = true
+print-opt-lower-bounds = true
+bb-compile = {base}/b_and_b/compile.sh {base} {input} {out}
+z3-python-lib = 
+opt-x-abs-tol = 0.2
+export-error-bounds = 
+opt-f-rel-tol = 0.1
+export-options = 
+opt-x-rel-tol = 0.0
+rel-error-threshold = 0.0001
+bb-alg = opt0
+log-base-dir = logd
+intermediate-opt = false
+z3-interval-bounds = true
+opt-max-iters = 0
+abs-error = false
+z3-bin = 
+maxima-simplification = false
+print-hex-floats = true
+debug = false
+print-precision = 7
+export-error-bounds-data = 
+fp-power2-model = false
+opt = gelpia
+default-var-type = float64
+verbosity = 5
+ulp-error = false
+opt-timeout = 10000
+nlopt-lib = -lnlopt -lm
+tmp-base-dir = tmp
+all-indices = true
+unique-indices = true
+z3-seed = 0
+tmp-date = false
+z3-python-cmd = python
+const-approx-real-vars = false
+print-second-order-errors = true
+Resetting input_parser_env
+eval_const_expr: (1/128)
+result: 1/128
+eval_const_expr: (1/2)
+result: 1/2
+eval_const_expr: 0
+result: 0
+eval_const_expr: (1/2)
+result: 1/2
+eval_const_expr: (1/128)
+result: 1/128
+Resetting input_parser_env
+|tasks| = 1
+Processing: Expression 1
+
+*************************************
+Taylor form for: rnd64(rnd64((rnd64((rnd64(exp(rnd64(x))) - rnd64(1))) * rnd64(inv(rnd64(x))))))
+
+Conservative bound: [0.015686, 83.036323]
+
+Simplified rounding: rnd64((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x)))))
+Building Taylor forms...
+var_rnd_form
+exp_form
+rounded_form
+const_form
+sub_form
+rounded_form
+inv_form
+rounded_form
+mul_form
+rounded_form
+Taylor forms cache stats: num_bindings = 10, num_buckets = 1024, max_bucket_length = 1
+Expr cache stats: num_bindings = 26, num_buckets = 65536, max_bucket_length = 2
+Simplifying Taylor forms...
+success
+v0 = ((exp(x) - 1) * (1 / x))
+-11: exp = -53: (3128890063285335/4951760157141521099596496896)
+-10: exp = -106: (7139514496327321/274877906944)
+-8: exp = -53: ((exp(x) - 1) * (2251799813685265/2475880078570760549798248448))
+-7: exp = -106: ((exp(x) - 1) * (4503599627370593/8589934592))
+-5: exp = -53: ((1 / x) * (2784442687636091/10141204801825835211973625643008))
+-3: exp = -53: ((1 / x) * (3712590250181455/40564819207303340847894502572032))
+-2: exp = -106: ((1 / x) * (7425180500362909/36028797018963968))
+1: exp = -53: (((exp(x) - 1) * (-((x / (x * x))))) + ((1 / x) * (exp(x) * x)))
+4: exp = -53: ((1 / x) * exp(x))
+6: exp = -53: ((1 / x) * (exp(x) - 1))
+9: exp = -53: ((exp(x) - 1) * (1 / x))
+12: exp = -53: ((exp(x) - 1) * (1 / x))
+
+Corresponding original subexpressions:
+-11: rnd[0,ne,0.00,0,0](rnd64((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x))))))
+-10: rnd[0,up,0.00,0,0]((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x)))))
+-8: rnd[0,ne,0.00,0,0](rnd64(inv(rnd64(x))))
+-7: rnd[0,up,0.00,0,0](inv(rnd64(x)))
+-5: rnd[0,ne,0.00,0,0](rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)))
+-3: rnd[0,ne,0.00,0,0](rnd64(exp(rnd64(x))))
+-2: rnd[0,up,0.00,0,0](exp(rnd64(x)))
+1: rnd64(x)
+4: rnd64(exp(rnd64(x)))
+6: rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1))
+9: rnd64(inv(rnd64(x)))
+12: rnd64((rnd[64,ne,1.00,-53,0]((rnd64(exp(rnd64(x))) - 1)) * rnd64(inv(rnd64(x)))))
+
+bounds: [-inf, inf]
+
+Elapsed time: 0.01432
+*************************************
+
+-------------------------------------------------------------------------------
+Problem: Expression 1
+
+
+
+Bounds (without rounding): [-inf, +inf]
+
+
+Elapsed time: 0.01
+

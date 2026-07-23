@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+#A command line wrapper for gelpia as I am unsure how to link rust correctly for standalone
+import sys
+from pathlib import Path
+
+project_root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(project_root / "gelpia"))
+sys.path.insert(0, str(project_root / "gelpia" / "bin"))
+import gelpia 
+import gelpia_logging
+import argparse
+import contextlib
+import io
+from fractions import Fraction
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("-f", "--function", dest="function_string", help="See gelpia", type=str)
+parser.add_argument("-R", "--realDomain", dest="isRealDomain", help="Give the real domain for a function",action="store_true")
+
+
+gelpia_logging.set_log_filename(None)
+
+gelpia_logging.set_log_level(-10)
+
+gelpia.setup_requirements(git_dir=gelpia.GIT_DIR)
+# Setup rust's env
+RUST_EXECUTABLE = gelpia.setup_rust_env(git_dir=gelpia.GIT_DIR, debug=False)
+args = parser.parse_args()
+
+CONFIG = {
+            "epsilons": (0.2, 0.2, 0.1),
+            "timeout": 60,
+            "grace": 0,
+            "update": 0,
+            "iters": 0,
+            "seed": 42,
+            # The selected executable above is the release solver. Passing
+            # debug mode changes its output protocol and makes the frontend
+            # parse diagnostic text as an interval result.
+            "debug": False,
+            "src_dir": gelpia.SRC_DIR,
+            "executable": RUST_EXECUTABLE,
+            }
+    
+# The pinned Gelpia frontend writes internal solver diagnostics to stdout.
+# MiniTuner's OCaml side expects stdout to contain one exact numeric result,
+# so contain those diagnostics without altering the dependency checkout.
+with contextlib.redirect_stdout(io.StringIO()):
+    min_lower, min_upper = gelpia.find_min(
+                        function=args.function_string , **CONFIG
+                    )
+    max_lower, max_upper = gelpia.find_max(
+                        function=args.function_string, **CONFIG
+                    )
+#Easier for ocaml as I won't need to convert from string to integer and back again
+
+if args.isRealDomain:
+    print( f"{min_lower},{max_upper}",end="")
+else:
+    max_val = max(max_upper, -min_lower)
+    frac_val = Fraction(max_val).limit_denominator(10**30)
+    print(frac_val, end="")

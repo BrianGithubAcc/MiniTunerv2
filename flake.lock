@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1783776592,
+        "narHash": "sha256-UgCQzxeWI75XM8G+hPrPh+MKzEPjG3SpAj7dtqSbksA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e7a3ca8092b61ff85b6a45bf863ea2b2d6a661b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "satire": "satire"
+      }
+    },
+    "satire": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1591382206,
+        "narHash": "sha256-sIyQc2N3luulFM3MEDQlkKCLpB1tWhNiPL2KnmkQr/c=",
+        "owner": "arnabd88",
+        "repo": "Satire",
+        "rev": "dda63f321a905f8be51e3648427bafea42352d40",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arnabd88",
+        "ref": "v1.1",
+        "repo": "Satire",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

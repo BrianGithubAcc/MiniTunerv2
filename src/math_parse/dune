@@ -1,0 +1,8 @@
+(library
+ (name math_parse)
+ (modules exprtype parser lexer))
+
+(menhir
+ (modules parser))
+
+(ocamllex lexer)

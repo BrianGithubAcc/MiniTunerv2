@@ -1,0 +1,18 @@
+diff --git a/opt_gelpia.ml b/opt_gelpia.ml
+index f19ad48..6b62a84 100644
+--- a/opt_gelpia.ml
++++ b/opt_gelpia.ml
+@@ -91,7 +91,12 @@ let min_max_expr (pars : Opt_common.opt_pars) max_only (cs : constraints) expr =
+   let gen = gen_gelpia_code in
+   let abs_expr = expr in
+   let _ = Lib.write_to_file gelpia_name gen (pars, cs, abs_expr) in
+-  let cmd = Format.sprintf "%s --mode=%s %s" (get_gelpia_cmd ()) (if max_only then "max" else "min-max") gelpia_name in
++  let serial =
++    match Sys.getenv_opt "MINITUNER_GELPIA_SERIAL" with
++    | Some "1" | Some "true" -> "--serial "
++    | _ -> "" in
++  let cmd = Format.sprintf "%s %s--mode=%s %s" (get_gelpia_cmd ()) serial
++      (if max_only then "max" else "min-max") gelpia_name in
+   let out = Lib.run_cmd cmd in
+   try
+     let min = if max_only then 0.0 else get_float out "Minimum lower bound " in

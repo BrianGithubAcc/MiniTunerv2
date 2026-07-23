@@ -1,0 +1,9 @@
+(library
+ (name taylor_parse)
+ (modules taylortype parser lexer)
+ (libraries zarith))
+
+(menhir
+ (modules parser))
+
+(ocamllex lexer)

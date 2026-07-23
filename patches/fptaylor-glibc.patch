@@ -1,0 +1,76 @@
+diff --git a/INTERVAL/chcw.c b/INTERVAL/chcw.c
+index 5f2d943..0bb2e00 100755
+--- a/INTERVAL/chcw.c
++++ b/INTERVAL/chcw.c
+@@ -177,7 +177,7 @@ double to_high(long double a) {
+ }
+ 
+ /* fadd_l, fsub_l, fmul_l, fdiv_l --------------------------------------------- */
+-double fadd(double a, double b) {
++double mt_fadd(double a, double b) {
+ 
+   volatile double res;
+ 
+@@ -264,7 +264,7 @@ long double fadd_high_l(long double a, long double b) {
+   return(res);
+ }
+ 
+-double fsub(double a, double b) {
++double mt_fsub(double a, double b) {
+ 
+   volatile double res;
+ 
+@@ -350,7 +350,7 @@ long double fsub_high_l(long double a, long double b) {
+   return(res);
+ }
+ 
+-double fmul(double a, double b) {
++double mt_fmul(double a, double b) {
+ 
+   volatile double res;
+ 
+@@ -436,7 +436,7 @@ long double fmul_high_l(long double a, long double b) {
+   return(res);
+ }
+ 
+-double fdiv(double a, double b) {
++double mt_fdiv(double a, double b) {
+ 
+   volatile double res;
+ 
+@@ -1563,7 +1563,7 @@ value ffloat_high_caml(value a) {
+ }
+ 
+ value fadd_caml(value a,value b) {
+-  return caml_copy_double(fadd(Double_val(a), Double_val(b)));
++  return caml_copy_double(mt_fadd(Double_val(a), Double_val(b)));
+ }
+ 
+ value fadd_low_caml(value a,value b) {
+@@ -1575,7 +1575,7 @@ value fadd_high_caml(value a,value b) {
+ }
+ 
+ value fsub_caml(value a,value b) {
+-  return caml_copy_double(fsub(Double_val(a), Double_val(b)));
++  return caml_copy_double(mt_fsub(Double_val(a), Double_val(b)));
+ }
+ 
+ value fsub_low_caml(value a,value b) {
+@@ -1587,7 +1587,7 @@ value fsub_high_caml(value a,value b) {
+ }
+ 
+ value fmul_caml(value a,value b) {
+-  return caml_copy_double(fmul(Double_val(a), Double_val(b)));
++  return caml_copy_double(mt_fmul(Double_val(a), Double_val(b)));
+ }
+ 
+ value fmul_low_caml(value a,value b) {
+@@ -1599,7 +1599,7 @@ value fmul_high_caml(value a,value b) {
+ }
+ 
+ value fdiv_caml(value a,value b) {
+-  return caml_copy_double(fdiv(Double_val(a), Double_val(b)));
++  return caml_copy_double(mt_fdiv(Double_val(a), Double_val(b)));
+ }
+ 
+ value fdiv_low_caml(value a,value b) {

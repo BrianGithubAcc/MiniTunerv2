@@ -1,0 +1,11 @@
+Variables
+    float64 x in [0,5];
+    float32 y in [0,5];
+
+Definitions
+    v0 rnd64 = x + y;
+    v1 rnd64 = sin(v0);
+    v2 rnd64 = sin(v0);
+
+Expressions
+    v0 + v1;
