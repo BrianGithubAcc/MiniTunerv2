@@ -1,3 +1,17 @@
+
+Testing capabilities of antigenic coding.
+Pros:
+- Followed instructions
+- Fast
+- can try alot of different ideas quickly
+Cons:
+- Needs hand held
+- Code luggage is very easy to accumulate
+- Code needs review
+
+End result is this repo
+------------------------------------------
+
 # MiniTuner
 
 MiniTuner selects elementary-function implementations on an exact cost/error
